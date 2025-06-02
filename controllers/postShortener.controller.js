@@ -28,7 +28,17 @@ export const getShortenerPage = async (req, res) => {
         const links =await getAllShortLinks();
         console.log("Links");
         console.log(links);
-        return res.render('index', { links: Array.isArray(links) ? links : [] , host: req.host });
+        const isLoggedIn = req.cookies.isLoggedIn;
+        // let isLoggedIn = req.headers.cookie;
+        // console.log("isLoggedIn",isLoggedIn);
+        // isLoggedIn= isLoggedIn.split(';');
+        // console.log(isLoggedIn);
+        // const data = isLoggedIn?.find((cookie) => cookie.trim().startsWith("isLoggedIn"));
+        // console.log(data);
+        // const arr = data.split('=');
+        // console.log(Boolean(arr[1]));
+        //     isLoggedIn=Boolean(arr[1]);
+        return res.render('index', { links: Array.isArray(links) ? links : [] , host: req.host ,isLoggedIn});
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal server error");

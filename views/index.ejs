@@ -1,50 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <% if(isLoggedIn) { %>
+      <h2>You are logged in</h2>
+      <% } else { %>
+      <h2>You are not logged in</h2>
+      <% } %>
+
+
     <div class="container">
-        <h1>URL Shortner</h1>
-        <form action="/" method="post">
-            <div>
-                <label for="url">Enter URL:</label>
-                <input type="url" name="url" id="url" required>
-            </div>
-            <div>
-                <label for="shortCode">Enter shortCode:</label>
-                <input type="text" name="shortCode" id="shortCode" required>
-            </div>
-            <button type="submit">Shorten</button>
-        </form>
-        <h2>Shortened URLs</h2>
-        <ul>
+      <h1>URL Shortener</h1>
+      <form action="/" method="post">
+        <div>
+          <label for="url">Enter URL:</label>
+          <input type="url" name="url" id="url" required />
+        </div>
+        <div>
+          <label for="shortCode">Enter shortCode:</label>
+          <input type="text" name="shortCode" id="shortCode" required />
+        </div>
+        <button type="submit">Shorten</button>
+      </form>
 
+      <h2>Shortened URLs</h2>
+      <ul>
+        <!-- {{ shortened_urls }} -->
 
-            <!-- const content = file.toString().replaceAll("{{shortened_urls}}",
-            Object.entries(links).map(([shortCode, url]) => `<li><a href="/${shortCode}"
-                    target="_blank">${req.host}/${shortCode}</a> ->${url}</li>`)
-            ); -->
+        <!-- Object.entries(links) .map(([shortCode, url]) => { url = url.length >=
+        30 ? `${url.slice(0, 30)}...` : url; return `
+        <li>
+          <a href="/${shortCode}" target="_blank">$host}/${shortCode}</a> -
+          ${url}
+        </li>
+        `; }) .join("") -->
 
-            <% links.map(({shortCode,url})=>{ %>
+        <% links.map(({shortCode, url}) => { %> <% const truncatedUrl =
+        url.length >= 30 ? `${url.slice(0,30)}...` : url %>
 
-                 <li>
-                    <a href="/<%= shortCode%>" target="_blank">
-                        <%= host %>/<%=shortCode%>
-                    </a> - <%= url %>
-                </li>
-
-                <% }) %>
-        </ul>
+        <li>
+          <a href="/<%= shortCode %>" target="_blank">
+            <%= host %>/<%= shortCode %>
+          </a>
+          - <%= truncatedUrl %>
+        </li>
+        <% })%>
+      </ul>
     </div>
-    <script>
-
-    </script>
-</body>
-
+  </body>
 </html>
