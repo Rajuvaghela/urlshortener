@@ -32,3 +32,8 @@ export const generateToken = async ({id,name,email})=>{
     expiresIn :'30d',
    });
 }
+
+//verify token
+export const verifyJWTToken = (token) =>{
+    return jwt.verify(token,process.env.JWT_SECRET);
+}

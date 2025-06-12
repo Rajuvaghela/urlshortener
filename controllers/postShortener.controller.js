@@ -26,9 +26,9 @@ export const getShortenerPage = async (req, res) => {
     try {
         // const links = await loadLinks();
         const links =await getAllShortLinks();
-        console.log("Links");
-        console.log(links);
-        const isLoggedIn = req.cookies.isLoggedIn;
+        // console.log("Links");
+        //console.log(links);
+        //const isLoggedIn = req.cookies.isLoggedIn;
         // let isLoggedIn = req.headers.cookie;
         // console.log("isLoggedIn",isLoggedIn);
         // isLoggedIn= isLoggedIn.split(';');
@@ -38,7 +38,7 @@ export const getShortenerPage = async (req, res) => {
         // const arr = data.split('=');
         // console.log(Boolean(arr[1]));
         //     isLoggedIn=Boolean(arr[1]);
-        return res.render('index', { links: Array.isArray(links) ? links : [] , host: req.host ,isLoggedIn});
+        return res.render('index', { links: Array.isArray(links) ? links : [] , host: req.host });
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal server error");
