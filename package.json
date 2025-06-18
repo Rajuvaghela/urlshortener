@@ -27,7 +27,7 @@
     "mongoose": "^8.15.0",
     "mysql2": "^3.12.0",
     "nodemon": "^3.1.10",
-    "zod": "^3.25.17"
+    "zod": "^3.25.64"
   },
   "devDependencies": {
     "drizzle-kit": "^0.30.4",

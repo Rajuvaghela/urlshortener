@@ -2,29 +2,49 @@ import { eq } from "drizzle-orm";
 import { db } from "../config/db.js"
 import { shortLinkTable } from "../drizzle/schema.js"
 
-export const getAllShortLinks = async () => {
-    return await db.select().from(shortLinkTable);
+export const getAllShortLinks = async (userId) => {
+    return await db
+        .select()
+        .from(shortLinkTable)
+        .where(eq(shortLinkTable.userId,userId));
 }
 
 export const getShortLinkByShortCode = async (shortCode) => {
-    const [result] = await db.select().from(shortLinkTable).where(eq(shortLinkTable.shortCode , shortCode ));
+    const [result] = await db.select().from(shortLinkTable).where(eq(shortLinkTable.shortCode, shortCode));
     return result;
 }
 
 
-export const inserShortLink = async ({ url, shortCode }) => {
+export const inserShortLink = async ({ url, shortCode, userId }) => {
     await db.insert(shortLinkTable).values({
-        url, shortCode
+        url,
+        shortCode,
+        userId
     });
 }
 
 
+//findShortLinkById
 
+export const findShortLinkById = async (id) => {
+  const [result] = await db
+    .select()
+    .from(shortLinkTable)
+    .where(eq(shortLinkTable.id, id));
+  return result;
+};
 
+export const updateShortCode = async ({ id, url, shortCode }) => {
+  return await db
+    .update(shortLinkTable)
+    .set({ url, shortCode })
+    .where(eq(shortLinkTable.id, id));
+};
 
-
-
-
+//deleteShortCodeById
+export const deleteShortCodeById = async (id) => {
+  return await db.delete(shortLinkTable).where(eq(shortLinkTable.id, id));
+};
 
 
 

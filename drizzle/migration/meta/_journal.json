@@ -15,6 +15,20 @@
       "when": 1739360691055,
       "tag": "0001_confused_molten_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1749745122142,
+      "tag": "0002_broad_revanche",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1750258524559,
+      "tag": "0003_dazzling_killraven",
+      "breakpoints": true
     }
   ]
 }
